@@ -30,7 +30,7 @@ if ('$(Build.SourceBranchName)' -eq 'master')
         ""title"": ""B2B Test"",
         ""text"": ""$text"",
         ""sections"": [
-            { ""text"": ""$(Build.SourceVersionMessage)""}
+            { ""text"": ""$text""}
         ],
         ""potentialAction"": [
             {
@@ -58,7 +58,7 @@ else
         ""title"": ""B2B Test"",
         ""text"": ""$text&nbsp;$(Build.SourceVersionMessage)"",
         ""sections"": [
-            { ""text"": ""$(Build.SourceVersionMessage)""}`
+            { ""text"": ""$text""}`
         ],
         ""potentialAction"": [
             {
