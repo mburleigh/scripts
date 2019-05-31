@@ -55,8 +55,7 @@ else
             {
                 ""type"": ""section"",
                 ""text"": {
-                    ""type"": ""mrkdwn"",
-                    ""text"": ""$text""
+                    ""type"": ""mrkdwn"", ""text"": ""$text""
                 }
             },
             {
@@ -68,9 +67,7 @@ else
                     {
                         ""type"": ""button"",
                         ""text"": {
-                            ""type"": ""plain_text"",
-                            ""text"": ""Launch"",
-                            ""emoji"": true
+                            ""type"": ""plain_text"", ""text"": ""Launch""
                         },
                         ""url"": ""http://$containerUrl""
                     }
@@ -85,8 +82,7 @@ else
                 ""accessory"": {
                     ""type"": ""button"",
                     ""text"": {
-                        ""type"": ""plain_text"",
-                        ""text"": ""OK""
+                        ""type"": ""plain_text"", ""text"": ""OK""
                     },
                     ""style"": ""primary"",
                     ""url"": ""$url&passed=true""
@@ -101,8 +97,7 @@ else
                 ""accessory"": {
                     ""type"": ""button"",
                     ""text"": {
-                        ""type"": ""plain_text"",
-                        ""text"": ""OK""
+                        ""type"": ""plain_text"", ""text"": ""OK""
                     },
                     ""style"": ""danger"",
                     ""url"": ""$url&passed=false""
