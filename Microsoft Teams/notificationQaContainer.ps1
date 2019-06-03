@@ -18,7 +18,7 @@ param (
     $team               # the name of the AzDO team where the work is being assigned (used to determine the current iteration)
 )
 
-$text = "Container (ACI) for branch _$branch _ deployed:\n\n*$message*"
+$text = "Container (ACI) for branch *$branch* deployed:"
 #Write-Host $text
 
 if ('$(Build.SourceBranchName)' -eq 'master')
@@ -30,7 +30,7 @@ if ('$(Build.SourceBranchName)' -eq 'master')
         ""title"": ""B2B Test"",
         ""text"": ""$text"",
         ""sections"": [
-            { ""text"": ""$text""}
+            { ""text"": ""$message""}
         ],
         ""potentialAction"": [
             {
@@ -58,7 +58,7 @@ else
         ""title"": ""B2B Test"",
         ""text"": ""$text"",
         ""sections"": [
-            { ""text"": ""$text""}`
+            { ""text"": ""$message""}`
         ],
         ""potentialAction"": [
             {
