@@ -56,7 +56,7 @@ else
         ""@type"": ""MessageCard"",
         ""themeColor"": ""0072C6"",
         ""title"": ""B2B Test"",
-        ""text"": ""$text&nbsp;$(Build.SourceVersionMessage)"",
+        ""text"": ""$text"",
         ""sections"": [
             { ""text"": ""$text""}`
         ],
