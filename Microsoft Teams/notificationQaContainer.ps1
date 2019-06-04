@@ -37,7 +37,7 @@ if ('$(Build.SourceBranchName)' -eq 'master')
                 ""@type"": ""OpenUri"",
                 ""name"": ""Launch Container"",
                 ""targets"": [
-                    { ""os"": ""default"", ""uri"": ""http://$container"" }
+                    { ""os"": ""default"", ""uri"": ""http://$containerUrl"" }
                 ]
             }
         ]
@@ -65,7 +65,7 @@ else
                 ""@type"": ""OpenUri"",
                 ""name"": ""Launch Container"",
                 ""targets"": [
-                    { ""os"": ""default"", ""uri"": ""http://$container"" }
+                    { ""os"": ""default"", ""uri"": ""http://$containerUrl"" }
                 ]
             },
             {
