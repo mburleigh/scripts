@@ -15,7 +15,8 @@ param (
     $aciResourceGroup,  # the target resource group for the ACI instance of the image
     $project,           # the team project
     $targetBranch,      # the target branch for the merge
-    $team               # the name of the AzDO team where the work is being assigned (used to determine the current iteration)
+    $team,              # the name of the AzDO team where the work is being assigned (used to determine the current iteration)
+    $callbackUrl        # endpoint called to complete the confirmation
 )
 
 $text = "Container (ACI) for branch *$branch* deployed:"
@@ -48,7 +49,7 @@ else
     # these query string parameters match the inputs to the cleanup function
     $url = [uri]::EscapeUriString("$cleanupUrl&title=$title&container=$containerUrl&image=$imageName&buildId=$buildId&"+
       "acrRegistry=$acrRegistry&acrRepository=$acrRepository&aciResourceGroup=$aciResourceGroup&"+
-      "project=$project&targetBranch=$targetBranch&team=$team")
+      "project=$project&targetBranch=$targetBranch&team=$team&callbackUrl=$callbackUrl")
     #Write-Host $url
 
     $notification = "{
