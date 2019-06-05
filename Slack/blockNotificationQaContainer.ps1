@@ -36,7 +36,7 @@ if ($branch -eq 'master')
                     ""name"": ""action"",
                     ""type"": ""button"",
                     ""text"": ""Launch Container"",
-                    ""url"": ""http://$containerUrl""
+                    ""url"": ""https://$containerUrl""
                     }
                 ]
             }
@@ -71,7 +71,7 @@ else
                         ""text"": {
                             ""type"": ""plain_text"", ""text"": ""Launch""
                         },
-                        ""url"": ""http://$containerUrl""
+                        ""url"": ""https://$containerUrl""
                     }
                 ]
             },
