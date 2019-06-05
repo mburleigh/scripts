@@ -3,8 +3,8 @@
 param (
     $message,           # notification message (typically Build.SourceVersionMessage)
     $branch,            # Build.SourceBranch
-    $username,          # the user name that shows on the Slack message
-    $webhookuri,        # the Slack web hook to call
+    $username,          # the user name that shows on the Teams message
+    $webhookuri,        # the Teams web hook to call
     $containerUrl,      # should be set by a prior task (typically the one that creates the instance in ACI)
     $imageName,         # the ACI image name
     $buildId,           # AzDO build id
@@ -14,7 +14,7 @@ param (
     $acrRepository,     # the target repository in the acrRegistry
     $acrAuth,           # authentication token for target repository in the acrRegistry
     $aciResourceGroup,  # the target resource group for the ACI instance of the image
-    $project,           # the team project
+    $project,           # the AzDO team project
     $targetBranch,      # the target branch for the merge
     $team,              # the name of the AzDO team where the work is being assigned (used to determine the current iteration)
     $callbackUrl        # endpoint called to complete the confirmation

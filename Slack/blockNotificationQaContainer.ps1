@@ -14,7 +14,7 @@ param (
     $acrRepository,     # the target repository in the acrRegistry
     $acrAuth,           # authentication token for target repository in the acrRegistry
     $aciResourceGroup,  # the target resource group for the ACI instance of the image
-    $project,           # the team project
+    $project,           # the AzDO team project
     $targetBranch,      # the target branch for the merge
     $team,              # the name of the AzDO team where the work is being assigned (used to determine the current iteration)
     $callbackUrl        # endpoint called to complete the confirmation
