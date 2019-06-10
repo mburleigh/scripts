@@ -23,6 +23,7 @@ REM echo "password:" %password%
 
 call az acr show --name %imageRegistry% --query "resourceGroup" --output tsv > tmp
 set /p resourcegroup= < tmp
+echo ##vso[task.setvariable variable=resourcegroup]%resourcegroup%
 REM echo "resource group:" %resourcegroup%
 
 set image=%loginserver%/%imagerepository%:%imageName%
