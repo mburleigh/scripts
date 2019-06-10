@@ -30,7 +30,7 @@ echo "image:" %image%
 
 call az container create -g %resourcegroup% -n %imageName% --image %image% --cpu 1 --memory 1^
   --registry-login-server %loginserver% --registry-username %username% --registry-password %password%^
-  --dns-name-label %imageName%-%id% --ports 80 --os-type Windows
+  --dns-name-label %imageName%-%id% --ports 443 --os-type Windows
 
 rem call az container exec -g %resourcegroup% -n %imageName% --exec-command powershell 
 rem $nic = Get-NetAdapter; Set-DnsClientServerAddress -InterfaceIndex $nic.IfIndex -ServerAddresses ('1.1.1.1','8.8.8.8');
