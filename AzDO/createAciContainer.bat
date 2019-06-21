@@ -36,9 +36,9 @@ call az container create -g %resourcegroup% -n %name% --image %image% --cpu 1 --
   --registry-login-server %loginserver% --registry-username %username% --registry-password %password%^
   --dns-name-label qa-%name%-%id% --ports 80 --os-type Windows
 
-call az container restart -g %resourcegroup% -n %imageName% --no-wait
+call az container restart -g %resourcegroup% -n %name% --no-wait
 
-call az container show --resource-group %resourcegroup% --name %imageName% --query ipAddress.fqdn --output tsv > tmp
+call az container show --resource-group %resourcegroup% --name %name% --query ipAddress.fqdn --output tsv > tmp
 set /p url= < tmp
 echo "url:" %url%
 
