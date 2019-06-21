@@ -29,12 +29,12 @@ REM echo "resource group:" %resourcegroup%
 set image=%loginserver%/%imagerepository%:%imageName%
 echo "image:" %image%
 
-set dns=%imageName:_=-%
-echo "dns name:" %dns%
+set name=%imageName:_=-%
+echo "cleaned name:" %name%
 
-call az container create -g %resourcegroup% -n %imageName% --image %image% --cpu 1 --memory 1^
+call az container create -g %resourcegroup% -n %name% --image %image% --cpu 1 --memory 1^
   --registry-login-server %loginserver% --registry-username %username% --registry-password %password%^
-  --dns-name-label qa-%dns%-%id% --ports 80 --os-type Windows
+  --dns-name-label qa-%name%-%id% --ports 80 --os-type Windows
 
 call az container restart -g %resourcegroup% -n %imageName% --no-wait
 
