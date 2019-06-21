@@ -21,7 +21,7 @@ param (
 )
 
 $text = "Container (ACI) for branch _$branch _ deployed:\n\n*$message*"
-#Write-Host $text
+Write-Host $text
 
 if ($branch -eq 'master')
 {
@@ -49,7 +49,7 @@ else
     $url = [uri]::EscapeUriString("$cleanupUrl&title=$title&container=$containerUrl&image=$imageName&buildId=$buildId&"+
       "acrRegistry=$acrRegistry&acrRepository=$acrRepository&acrAuth=$acrAuth&aciResourceGroup=$aciResourceGroup&"+
       "project=$project&targetBranch=$targetBranch&team=$team&callbackUrl=$callbackUrl")
-    #Write-Host $url
+    Write-Host $url
 
     $notification = "{
         ""username"": ""$username"",
@@ -109,5 +109,5 @@ else
     }"
 }
 
-#Write-Host $notification
+Write-Host $notification
 Invoke-RestMethod -Uri $webhookuri -Method POST -Body $notification
