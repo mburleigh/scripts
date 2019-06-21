@@ -21,7 +21,7 @@ param (
 )
 
 $text = "Container (ACI) for branch *$branch* deployed:"
-#Write-Host $text
+Write-Host $text
 
 if ('$(Build.SourceBranchName)' -eq 'master')
 {
@@ -51,7 +51,7 @@ else
     $url = [uri]::EscapeUriString("$cleanupUrl&title=$title&container=$containerUrl&image=$imageName&buildId=$buildId&"+
       "acrRegistry=$acrRegistry&acrRepository=$acrRepository&acrAuth=$acrAuth&aciResourceGroup=$aciResourceGroup&"+
       "project=$project&targetBranch=$targetBranch&team=$team&callbackUrl=$callbackUrl")
-    #Write-Host $url
+    Write-Host $url
 
     $notification = "{
         ""@context"": ""https://schema.org/extensions"",
@@ -88,4 +88,5 @@ else
     }"
 }
 
+Write-Host $notification
 Invoke-RestMethod -Uri $webhookuri -Method POST -Body $notification
