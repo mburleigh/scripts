@@ -23,23 +23,22 @@ REM echo "password:" %password%
 
 call az acr show --name %imageRegistry% --query "resourceGroup" --output tsv > tmp
 set /p resourcegroup= < tmp
+echo ##vso[task.setvariable variable=resourcegroup]%resourcegroup%
 REM echo "resource group:" %resourcegroup%
 
 set image=%loginserver%/%imagerepository%:%imageName%
 echo "image:" %image%
 
-call az container create -g %resourcegroup% -n %imageName% --image %image% --cpu 1 --memory 1^
+set name=%imageName:_=-%
+echo "cleaned name:" %name%
+
+call az container create -g %resourcegroup% -n %name% --image %image% --cpu 1 --memory 1^
   --registry-login-server %loginserver% --registry-username %username% --registry-password %password%^
-  --dns-name-label %imageName%-%id% --ports 80 --os-type Windows
+  --dns-name-label qa-%name%-%id% --ports 80 --os-type Windows
 
-call az container exec -g %resourcegroup% -n %imageName% --exec-command powershell 
+call az container restart -g %resourcegroup% -n %name% --no-wait
 
-$nic = Get-NetAdapter ; Set-DnsClientServerAddress -InterfaceIndex $nic.IfIndex -ServerAddresses ('1.1.1.1','8.8.8.8');
-exit
-
-call az container restart -g %resourcegroup% -n %imageName% --no-wait
-
-call az container show --resource-group %resourcegroup% --name %imageName% --query ipAddress.fqdn --output tsv > tmp
+call az container show --resource-group %resourcegroup% --name %name% --query ipAddress.fqdn --output tsv > tmp
 set /p url= < tmp
 echo "url:" %url%
 

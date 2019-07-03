@@ -44,10 +44,10 @@ if ($branch -eq 'master')
 else
 {
     # these query string parameters match the inputs to the cleanup function
-    $url = "$cleanupUrl&title=$title&container=$containerUrl&image=$imageName&buildId=$buildId&"+
-      "acrRegistry=$acrRegistry&acrRepository=$acrRepository&aciResourceGroup=$aciResourceGroup&"+
-      "project=$project&targetBranch=$targetBranch&team=$team"
-    #Write-Host $url
+    $url = [uri]::EscapeUriString("$cleanupUrl&title=$title&container=$containerUrl&image=$imageName"+
+      "&buildId=$buildId&acrRegistry=$acrRegistry&acrRepository=$acrRepository&aciResourceGroup=$aciResourceGroup&"+
+      "project=$project&targetBranch=$targetBranch&team=$team")
+    Write-Host $url
 
     $notification = "{
         ""username"": ""$username"",
