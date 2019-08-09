@@ -27,11 +27,6 @@ image=$loginserver/$imageRepository:$imageName
 az container create -g $resourcegroup -n $imageName --image $image --cpu 1 --memory 1 --registry-login-server \
   $loginserver --registry-username $username --registry-password $password --dns-name-label $imageName-$id --ports 80
 
-az container exec -g $resourcegroup -n $imageName --exec-command powershell 
-
-$nic = Get-NetAdapter ; Set-DnsClientServerAddress -InterfaceIndex $nic.IfIndex -ServerAddresses ('1.1.1.1','8.8.8.8');
-exit
-
 az container restart -g $resourcegroup -n $imageName --no-wait
 
 url=$(az container show -g $resourcegroup -n $imageNane --query ipAddress.fqdn)
