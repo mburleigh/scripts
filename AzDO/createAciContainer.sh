@@ -29,7 +29,7 @@ az container create -g $resourcegroup -n $imageName --image $image --cpu 1 --mem
 
 az container restart -g $resourcegroup -n $imageName --no-wait
 
-url=$(az container show -g $resourcegroup -n $imageNane --query ipAddress.fqdn)
+url=$(az container show -g $resourcegroup -n $imageName --query ipAddress.fqdn)
 echo "url:" $url
 echo "##vso[task.setvariable variable=containerUrl]$url"
 
