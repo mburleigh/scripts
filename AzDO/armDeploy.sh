@@ -2,15 +2,16 @@
 
 # NOTE: special characters here will cause problems with the storage acct name
 deploymentName=$1
-#echo "deployment name " $deploymentName
+echo "deployment name =" $deploymentName
 
 # this is the Azure region where the resource group will live
 resourceGroupLocation=$2
 
 armTemplate=$3
+echo "ARM template =" $armTemplate
 
 resourceGroupName="$deploymentName-rg"
-#echo "resource group name " $resourceGroupName
+echo "resource group name =" $resourceGroupName
 echo "##vso[task.setvariable variable=serviceResourceGroupName]$resourceGroupName"
 
 # check for existing resource group
@@ -28,13 +29,13 @@ fi
 # base the rest of the parameters on the deploymentName
 ###
 serviceName=$deploymentName'-svc'
-#echo "service name " $serviceName
+echo "service name =" $serviceName
 
 # storage account names are 3-24 chars (lowercase & no special characters)
 storageAccountName=${deploymentName,,}'sa' # TODO: remove special characters
-echo "storage account name " $storageAccountName
-templateFilePath=$PWD'/$armTemplate'
-echo "template file path " $templateFilePath
+echo "storage account name =" $storageAccountName
+#templateFilePath=$PWD'/'$armTemplate
+#echo "template file path =" $templateFilePath
 
 echo "Starting deployment..."
 (
@@ -49,7 +50,7 @@ echo "Starting deployment..."
 	#echo $params
 
 	# call the Azure CLI
-	az group deployment create -n "$deploymentName" -g "$resourceGroupName" --template-file "$templateFilePath" --parameters "$params"
+	az group deployment create -n "$deploymentName" -g "$resourceGroupName" --template-file "$armTemplate" --parameters "$params"
 )
 
 if [ $? == 0 ]; then
