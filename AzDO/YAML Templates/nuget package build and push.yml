@@ -1,0 +1,45 @@
+parameters:
+- name: projectFile
+  type: string
+- name: feedName
+  type: string
+
+jobs:
+- job: Build
+  pool:
+    name: Azure Pipelines
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Use .NET Core sdk 6.0.x'
+    inputs:
+      version: 6.0.x
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet 6.0.0'
+    inputs:
+      versionSpec: 6.0.0
+
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build'
+    inputs:
+      projects: ${{parameters.projectFile}}
+      arguments: '-c Release'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet pack'
+    inputs:
+      command: pack
+      configuration: Release
+      packagesToPack: ${{parameters.projectFile}}
+      versioningScheme: byPrereleaseNumber
+      includeSymbols: true
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet push'
+    inputs:
+      command: push
+      publishVstsFeed: ${{parameters.feedName}}
